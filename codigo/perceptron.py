@@ -7,6 +7,8 @@
 # -*- coding: utf-8 -*-
 
 from numpy import exp, array, random, dot
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 class NeuralNetwork():
@@ -61,8 +63,38 @@ class NeuralNetwork():
         # Pasamos las entradas a través de la red neuronal (una única neurona).
         return self.__sigmoid(dot(inputs, self.synaptic_weights))
 
-    def discrimine(self):
+
+
+def discrimine(value):
+    if value >= 0.5:
         return 1
+    else:
+        return 0
+
+def classify(results):
+    dictionary = {
+        "A" : [0, 0, 0, 0],
+        "B" : [0, 0, 0, 1],
+        "C" : [0, 0, 1, 0],
+        "D" : [0, 0, 1, 1],
+        "E" : [0, 1, 0, 0],
+        "F" : [0, 1, 0, 1],
+        "G" : [0, 1, 1, 0],
+        "H" : [0, 1, 1, 1],
+        "I" : [1, 0, 0, 0],
+        "J" : [1, 0, 0, 1],
+        "K" : [1, 0, 1, 0],
+        "L" : [1, 0, 1, 1],
+        "M" : [1, 1, 0, 0],
+        "N" : [1, 1, 0, 1],
+        "O" : [1, 1, 1, 0],
+        "P" : [1, 1, 1, 1]
+    }
+    for name, array in dictionary.iteritems():
+     #   print array
+        if array == results:
+            return name
+    return "No encuentra coincidencia"
 
 if __name__ == "__main__":
 
@@ -118,9 +150,33 @@ if __name__ == "__main__":
     print(neural_network_4.synaptic_weights," pesos para 4")
    
 
+    prueba =     np.array([
+                    [1, 1, 1, 1, 1],
+                    [1, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 1],
+                    [1, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 1]
+                    ])
+    prueba = np.reshape(prueba, 35)
+
+
+
+    result = []
     # Pruebe la red neuronal con una situacion desconocida.
     print("Considerando las entradas  -> ?: ")
-    print(neural_network_1.think(array([1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1])),"Para 1")
-    print(neural_network_2.think(array([1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1])), "Para 2")
-    print(neural_network_3.think(array([1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1])), "Para 3")
-    print(neural_network_4.think(array([1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1])), "Para 4")
+    perceptron1 = neural_network_1.think(prueba)
+    perceptron2 = neural_network_2.think(prueba)
+    perceptron3 = neural_network_3.think(prueba)
+    perceptron4 = neural_network_4.think(prueba)
+
+    result.append(discrimine(perceptron1))
+    result.append(discrimine(perceptron2))
+    result.append(discrimine(perceptron3))
+    result.append(discrimine(perceptron4))
+
+    print "Resultado de la predicción : " + str(classify(result))
+
+    plt.imshow(np.reshape(prueba, (7,5)), 'gray')
+    plt.show()
