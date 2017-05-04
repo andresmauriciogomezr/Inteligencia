@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
 # como ocurre la propagacion inversa por medio del gradiente descendiente? Revisar el link
 # Sugerencia: primero leer y entender la parte de la definición general (if __name__ == "__main__":) y despues entrar en el modelo del perceprtron (class NeuralNetwork():)
@@ -58,6 +61,8 @@ class NeuralNetwork():
         # Pasamos las entradas a través de la red neuronal (una única neurona).
         return self.__sigmoid(dot(inputs, self.synaptic_weights))
 
+    def discrimine(self):
+        return 1
 
 if __name__ == "__main__":
 
@@ -68,11 +73,11 @@ if __name__ == "__main__":
     neural_network_3 = NeuralNetwork()
     neural_network_4 = NeuralNetwork()
 
-    print("Pesos sinapticos iniciales generados aleatoriamente: ")
-    print(neural_network_1.synaptic_weights," pesos para 1")
-    print(neural_network_2.synaptic_weights," pesos para 2")
-    print(neural_network_3.synaptic_weights," pesos para 3")
-    print(neural_network_4.synaptic_weights," pesos para 4")
+    #print("Pesos sinapticos iniciales generados aleatoriamente: ")
+    #print(neural_network_1.synaptic_weights," pesos para 1")
+    #print(neural_network_2.synaptic_weights," pesos para 2")
+    #print(neural_network_3.synaptic_weights," pesos para 3")
+    #print(neural_network_4.synaptic_weights," pesos para 4")
 
     # El conjunto de entrenamiento. Tenemos 4 ejemplos, cada uno consistente
     # de tres valores de entrada con su respectiva salida (una salida)
