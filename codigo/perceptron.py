@@ -9,7 +9,7 @@
 from numpy import exp, array, random, dot
 import numpy as np
 import matplotlib.pyplot as plt
-
+import random as rn
 
 class NeuralNetwork():
 
@@ -161,7 +161,8 @@ if __name__ == "__main__":
                     ])
     prueba = np.reshape(prueba, 35)
 
-
+    np.random.seed((int)(rn.randrange(0,1000)))
+    prueba = np.random.choice([0, 1], size=35)
 
     result = []
     # Pruebe la red neuronal con una situacion desconocida.
@@ -176,7 +177,7 @@ if __name__ == "__main__":
     result.append(discrimine(perceptron3))
     result.append(discrimine(perceptron4))
 
-    print "Resultado de la predicción : " + str(classify(result))
-
+    print "Resultado de la prediccion : " + str(classify(result))
+    prueba = 1- prueba
     plt.imshow(np.reshape(prueba, (7,5)), 'gray')
     plt.show()
