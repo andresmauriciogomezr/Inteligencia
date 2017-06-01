@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import random
+import time
 import numpy as np
 
 class Genetic:
@@ -93,6 +94,7 @@ class Genetic:
 
 
 
+start_time = time.time()
 
 genetic = Genetic( np.array( [1, 1, 0, 1, 0, 0, 1, 0] ) , 4)
 genetic.inicializar(5)
@@ -103,6 +105,7 @@ while genetic.found == False:
 	genetic.corssover(parejas)
 	genetic.mutar()
 
+print("--- %s seconds ---" % (time.time() - start_time))
 print "Solucion "
 print genetic.solucion
 #genetic.getFitness()
