@@ -79,7 +79,7 @@ class Genetic:
 		self.calcularFitness()
 
 	def mutar(self):
-		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )-1 ) )
+		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )) )
 
 		for x in xrange(0,probabilidadMutacion):
 			genoma = self.listaGenomas[x]
@@ -96,16 +96,20 @@ class Genetic:
 
 start_time = time.time()
 
-genetic = Genetic( np.array( [1, 1, 0, 1, 0, 0, 1, 0] ) , 4)
+genetic = Genetic( np.array( [1, 1, 1, 1, 1, 1, 1, 1] ) , 4)
 genetic.inicializar(5)
+
+generation = 0;
 
 while genetic.found == False:
 	genetic.calcularFitness()
 	parejas = genetic.seleccion()
 	genetic.corssover(parejas)
 	genetic.mutar()
+	generation += 1;
 
 print("--- %s seconds ---" % (time.time() - start_time))
-print "Solucion "
-print genetic.solucion
+print("--- %s Generations ---" % (generation))
+print ("Solucion ")
+print (genetic.solucion)
 #genetic.getFitness()
