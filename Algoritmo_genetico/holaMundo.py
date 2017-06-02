@@ -79,7 +79,7 @@ class Genetic:
 		self.calcularFitness()
 
 	def mutar(self):
-		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )-1 ) )
+		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )) )
 
 		for x in xrange(0,probabilidadMutacion):
 			genoma = self.listaGenomas[x]

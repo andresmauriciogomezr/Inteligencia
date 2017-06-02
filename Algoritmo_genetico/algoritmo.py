@@ -96,12 +96,8 @@ class Genetic:
 
 start_time = time.time()
 
-<<<<<<< HEAD
+
 genetic = Genetic( np.array( [1, 1, 1, 1, 1, 1, 1, 1] ) , 4)
-=======
-genetic = Genetic( np.array( [1, 1, 0, 1, 0, 0, 1, 0] ) , 4)
-#genetic = Genetic( np.array( [1,1,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,0,1,1,1,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,0,0] ) , 4)
->>>>>>> 3c19a69a5728d6eb750dfed2f17d8a19a0975504
 genetic.inicializar(5)
 
 generation = 0;
