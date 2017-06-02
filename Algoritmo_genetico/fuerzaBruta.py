@@ -10,6 +10,10 @@ import numpy as np
 class Force():
 	"""docstring for Force"""
 
+	def __init__(self, objetivo):
+		self.objetivo = objetivo
+
+
 	def calcularFitness(self):
 		self.listaFitness = []
 		for genoma in self.listaGenomas:
@@ -27,13 +31,28 @@ class Force():
 
 	def generateNumbers(self):
 		vector = []
-		for x in xrange(0,255):
-			vector.append(bin(x)[2:] )
+		for x in xrange(0,256):
+			binario = bin(x)[2:].zfill(8)
+			binario = binario.replace("",",")[1:-1];
+			aux = map(int, binario.split(","))
+			vector.append(np.array(aux))
 			pass
-
 		self.listaGenomas = np.array(vector)
-		print self.listaGenomas
 
-force = Force()
+	def findSolution(self):
+		solution = []
+		for x in xrange(0,256):
+			if self.listaFitness[x] == 0:
+				solution = self.listaGenomas[x]
+				pass
+			pass
+		return solution
+
+start_time = time.time()
+force = Force([1,1,1,1,1,1,1,1])
 force.generateNumbers()
 force.calcularFitness()
+
+print("--- %s seconds ---" % (time.time() - start_time))
+print("solucion")
+print(force.findSolution())
