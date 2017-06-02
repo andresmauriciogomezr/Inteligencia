@@ -96,17 +96,32 @@ class Genetic:
 
 start_time = time.time()
 
-#genetic = Genetic( np.array( [1, 1, 0, 1, 0, 0, 1, 0] ) , 4)
-genetic = Genetic( np.array( [1,1,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,0,1,1,1,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,0,0] ) , 4)
-genetic.inicializar(5)
+objetivos = [
+			[1, 1, 0, 1, 0, 0, 0],# h
+			[1, 1, 0, 1, 1, 1, 1],# o
+			[1, 1, 0, 1, 1, 0, 0],# l
+			[1, 1, 0, 0, 0, 0, 1],# a
+			[0, 1, 0, 0, 0, 0, 0],# _
+			[1, 1, 0, 1, 1, 0, 1],# m
+			[1, 1, 1, 0, 1, 0, 1],# u
+			[1, 1, 0, 1, 1, 1, 0],# n
+			[1, 1, 0, 0, 1, 0, 0],# d
+			[1, 1, 0, 1, 1, 1, 1] # o
+			]
 
-while genetic.found == False:
-	genetic.calcularFitness()
-	parejas = genetic.seleccion()
-	genetic.corssover(parejas)
-	genetic.mutar()
+for objetivo in objetivos:
+	genetic = Genetic( np.array( objetivo) , 4)
+	genetic.inicializar(5)
+
+	i = 0
+	while genetic.found == False:
+		genetic.calcularFitness()
+		parejas = genetic.seleccion()
+		genetic.corssover(parejas)
+		genetic.mutar()
+		i = i + 1
+
+	print "Solucion con " + str(i) + " generaciones"
+	print genetic.solucion
 
 print("--- %s seconds ---" % (time.time() - start_time))
-print "Solucion "
-print genetic.solucion
-#genetic.getFitness()
