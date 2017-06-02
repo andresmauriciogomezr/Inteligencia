@@ -79,7 +79,7 @@ class Genetic:
 		self.calcularFitness()
 
 	def mutar(self):
-		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )) )
+		probabilidadMutacion = random.randint( 0,( len( self.listaGenomas )-1 ) )
 
 		for x in xrange(0,probabilidadMutacion):
 			genoma = self.listaGenomas[x]
@@ -96,25 +96,32 @@ class Genetic:
 
 start_time = time.time()
 
-<<<<<<< HEAD
-genetic = Genetic( np.array( [1, 1, 1, 1, 1, 1, 1, 1] ) , 4)
-=======
-genetic = Genetic( np.array( [1, 1, 0, 1, 0, 0, 1, 0] ) , 4)
-#genetic = Genetic( np.array( [1,1,0,1,0,0,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,1,1,0,0,1,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,0,1,1,1,0,0,1,0,0,1,1,0,1,1,0,0,0,1,1,0,0,1,0,0] ) , 4)
->>>>>>> 3c19a69a5728d6eb750dfed2f17d8a19a0975504
-genetic.inicializar(5)
+objetivos = [
+			[1, 1, 0, 1, 0, 0, 0],# h
+			[1, 1, 0, 1, 1, 1, 1],# o
+			[1, 1, 0, 1, 1, 0, 0],# l
+			[1, 1, 0, 0, 0, 0, 1],# a
+			[0, 1, 0, 0, 0, 0, 0],# _
+			[1, 1, 0, 1, 1, 0, 1],# m
+			[1, 1, 1, 0, 1, 0, 1],# u
+			[1, 1, 0, 1, 1, 1, 0],# n
+			[1, 1, 0, 0, 1, 0, 0],# d
+			[1, 1, 0, 1, 1, 1, 1] # o
+			]
 
-generation = 0;
+for objetivo in objetivos:
+	genetic = Genetic( np.array( objetivo) , 4)
+	genetic.inicializar(5)
 
-while genetic.found == False:
-	genetic.calcularFitness()
-	parejas = genetic.seleccion()
-	genetic.corssover(parejas)
-	genetic.mutar()
-	generation += 1;
+	i = 0
+	while genetic.found == False:
+		genetic.calcularFitness()
+		parejas = genetic.seleccion()
+		genetic.corssover(parejas)
+		genetic.mutar()
+		i = i + 1
+
+	print "Solucion con " + str(i) + " generaciones"
+	print genetic.solucion
 
 print("--- %s seconds ---" % (time.time() - start_time))
-print("--- %s Generations ---" % (generation))
-print ("Solucion ")
-print (genetic.solucion)
-#genetic.getFitness()
